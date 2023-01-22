@@ -1,0 +1,8 @@
+@import "reset";
+@import "variables";
+@import "components";
+
+body {
+  font-family: var(--ff-primary);
+  font-weight: var(--fw-primary);
+}
