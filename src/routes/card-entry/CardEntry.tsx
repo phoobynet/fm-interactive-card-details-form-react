@@ -115,7 +115,7 @@ export default function Home () {
           onSubmit={formik.handleSubmit}
           className={styles.cardForm}
         >
-          <div className={styles.inputGroup}>
+          <div>
             <label htmlFor="cardholderName">Cardholder name</label>
             <input
               type="text"
