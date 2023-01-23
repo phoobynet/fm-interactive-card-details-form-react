@@ -33,7 +33,7 @@ input {
   }
 
   &:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
 
   &:hover:not([data-invalid='true']), &:focus:not([data-invalid='true']) {
@@ -44,8 +44,8 @@ input {
     border-radius: 0.5rem;
   }
 
-  &[data-invalid='true'] {
-    border: var(--clr-error) 1px solid;
+  &[aria-invalid='true'] {
+    border: var(--clr-error) 1px solid !important;
   }
 }
 

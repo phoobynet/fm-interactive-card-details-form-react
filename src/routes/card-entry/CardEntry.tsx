@@ -3,36 +3,10 @@ import { FormikErrors, useFormik } from 'formik'
 import MaskedInput from 'react-text-mask'
 import { parseISO, isValid, isBefore, addMonths, subDays } from 'date-fns'
 import { padStart } from 'lodash'
+import { CardFormData } from '@/lib/types/CardFormData'
+import { cardMask } from '@/lib/validation/cardMask'
 
 const now = Date.now()
-
-interface CardFormData {
-  cardholderName: string
-  cardNumber: string
-  expiryYear: string
-  expiryMonth: string
-  cvc: string
-}
-
-const CARD_NUMBER_MASK = [/\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/]
 
 export default function Home () {
   const formik = useFormik<CardFormData>({
@@ -123,7 +97,7 @@ export default function Home () {
               autoComplete="off"
               onChange={formik.handleChange}
               value={formik.values.cardholderName}
-              data-invalid={!!formik.errors.cardholderName && formik.touched.cardholderName}
+              aria-invalid={!!formik.errors.cardholderName && formik.touched.cardholderName}
               placeholder="e.g. Jane Appleseed"
               onBlur={formik.handleBlur}
             />
@@ -135,7 +109,7 @@ export default function Home () {
           <div className={styles.inputGroup}>
             <label htmlFor="cardNumber">Card Number</label>
             <MaskedInput
-              mask={CARD_NUMBER_MASK}
+              mask={cardMask}
               showMask={false}
               type="text"
               id="cardNumber"
@@ -144,7 +118,7 @@ export default function Home () {
               placeholder="e.g. 1234 5678 9123 0000"
               keepCharPositions={true}
               guide={false}
-              data-invalid={!!formik.errors.cardNumber && formik.touched.cardNumber}
+              aria-invalid={!!formik.errors.cardNumber && formik.touched.cardNumber}
               onBlur={formik.handleBlur}
             />
             {formik.touched.cardNumber && formik.errors.cardNumber
@@ -166,7 +140,7 @@ export default function Home () {
               mask={[/\d/, /\d/]}
               placeholder="MM"
               guide={false}
-              data-invalid={!!formik.errors.expiryMonth && formik.touched.expiryMonth}
+              aria-invalid={!!formik.errors.expiryMonth && formik.touched.expiryMonth}
               onBlur={(e) => {
                 formik.setFieldValue('expiryMonth', padStart(e.currentTarget.value, 2, '0'))
                 formik.handleBlur(e)
@@ -181,7 +155,7 @@ export default function Home () {
               mask={[/\d/, /\d/]}
               placeholder="YY"
               guide={false}
-              data-invalid={!!formik.errors.expiryYear && formik.touched.expiryYear}
+              aria-invalid={!!formik.errors.expiryYear && formik.touched.expiryYear}
               onBlur={formik.handleBlur}
             />
             {(formik.touched.expiryMonth || formik.touched.expiryYear) && (formik.errors.expiryMonth || formik.errors.expiryYear)
@@ -203,7 +177,7 @@ export default function Home () {
               keepCharPositions={true}
               autoComplete="off"
               guide={false}
-              data-invalid={!!formik.errors.cvc && formik.touched.cvc}
+              aria-invalid={!!formik.errors.cvc && formik.touched.cvc}
               className={styles.cvcInput}
               onBlur={formik.handleBlur}
             />
