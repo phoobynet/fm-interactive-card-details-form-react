@@ -63,14 +63,15 @@ export default function Home () {
 
       const expiryMonth = (values.expiryMonth?.trim() || '')
       const expiryMonthInt = parseInt(expiryMonth)
-      const expiryYear = (values.expiryYear?.trim() || '')
-      const expiryYearInt = parseInt(expiryYear)
 
       if (expiryMonth.length === 0) {
         errors.expiryMonth = `Can't be blank`
       } else if (isNaN(expiryMonthInt)) {
         errors.expiryMonth = `Invalid value`
       }
+
+      const expiryYear = (values.expiryYear?.trim() || '')
+      const expiryYearInt = parseInt(expiryYear)
 
       if (expiryYear.length === 0) {
         errors.expiryYear = `Can't be blank`
@@ -183,7 +184,7 @@ export default function Home () {
               data-invalid={!!formik.errors.expiryYear && formik.touched.expiryYear}
               onBlur={formik.handleBlur}
             />
-            {(formik.touched.expiryMonth || formik.touched.expiryYear) && formik.errors.expiryMonth
+            {(formik.touched.expiryMonth || formik.touched.expiryYear) && (formik.errors.expiryMonth || formik.errors.expiryYear)
               ? <span
                 className={`error ${styles.expiryError}`}
               >{formik.errors.expiryMonth || formik.errors.expiryYear}</span>
@@ -200,6 +201,7 @@ export default function Home () {
               mask={[/\d/, /\d/, /\d/, /\d/]}
               placeholder="e.g. 123"
               keepCharPositions={true}
+              autoComplete="off"
               guide={false}
               data-invalid={!!formik.errors.cvc && formik.touched.cvc}
               className={styles.cvcInput}
