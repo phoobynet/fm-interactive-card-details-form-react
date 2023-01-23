@@ -1,24 +1,10 @@
 import styles from '@/App.module.scss'
 import { FormikErrors, useFormik } from 'formik'
 import MaskedInput from 'react-text-mask'
-import { useMemo, useState } from 'react'
-import { format, addYears, parseISO, isValid, isBefore, addMonths, subDays } from 'date-fns'
+import { parseISO, isValid, isBefore, addMonths, subDays } from 'date-fns'
 import { padStart } from 'lodash'
 
 const now = Date.now()
-const startYear = parseInt(format(now, 'yy'))
-const endYear = parseInt(format(addYears(now, 20), 'yy'))
-
-enum ExpiryErrorType {
-  none = 0,
-  monthBlank = 1 << 0,
-  monthJunk = 1 << 1,
-  monthOutOfRange = 1 << 2,
-  yearBlank = 1 << 3,
-  yearJunk = 1 << 4,
-  yearOutOfRange = 1 << 5,
-  inThePast = 1 << 6,
-}
 
 interface CardFormData {
   cardholderName: string
@@ -49,8 +35,6 @@ const CARD_NUMBER_MASK = [/\d/,
   /\d/]
 
 export default function Home () {
-  const [expiryErrorType, setExpiryErrorType] = useState<ExpiryErrorType>(ExpiryErrorType.none)
-
   const formik = useFormik<CardFormData>({
     initialValues: {
       cardholderName: '',
@@ -79,52 +63,35 @@ export default function Home () {
 
       const expiryMonth = (values.expiryMonth?.trim() || '')
       const expiryMonthInt = parseInt(expiryMonth)
-      let expiryMonthError = true
-
-      if (expiryMonth.length == 0) {
-        setExpiryErrorType(ExpiryErrorType.monthBlank)
-      } else if (isNaN(expiryMonthInt)) {
-        setExpiryErrorType(ExpiryErrorType.monthJunk)
-      } else if (expiryMonthInt < 1 || expiryMonthInt > 12) {
-        setExpiryErrorType(ExpiryErrorType.monthOutOfRange)
-      } else {
-        expiryMonthError = false
-      }
-
-      if (expiryMonthError) {
-        errors.expiryMonth = '*'
-      }
-
       const expiryYear = (values.expiryYear?.trim() || '')
       const expiryYearInt = parseInt(expiryYear)
-      let expiryYearError = true
 
-      if (expiryYear.length == 0) {
-        setExpiryErrorType(state => state | ExpiryErrorType.yearBlank)
+      if (expiryMonth.length === 0) {
+        errors.expiryMonth = `Can't be blank`
+      } else if (isNaN(expiryMonthInt)) {
+        errors.expiryMonth = `Invalid value`
+      }
+
+      if (expiryYear.length === 0) {
+        errors.expiryYear = `Can't be blank`
       } else if (isNaN(expiryYearInt)) {
-        setExpiryErrorType(state => state | ExpiryErrorType.yearJunk)
-      } else if (expiryYearInt < startYear || expiryYearInt > endYear) {
-        setExpiryErrorType(state => state | ExpiryErrorType.yearOutOfRange)
-      } else {
-        expiryYearError = false
+        errors.expiryYear = `Invalid value`
       }
 
-      if (expiryYearError) {
-        errors.expiryYear = '*'
-      }
-
-      if (!expiryMonthError && !expiryYearError) {
+      if (!errors.expiryMonth && !errors.expiryYear) {
         let expiryDate = parseISO(`20${expiryYearInt}-${padStart(expiryMonthInt.toString(), 2, '0')}-01`)
 
         if (!isValid(expiryDate)) {
-          throw new Error('invalid expiry date - contact developer')
+          errors.expiryMonth = `Invalid date`
+        } else {
+          expiryDate = subDays(addMonths(expiryDate, 1), 1)
+
+          if (isBefore(expiryDate, now)) {
+            errors.expiryMonth = `Date in the past`
+          }
         }
 
-        expiryDate = subDays(addMonths(expiryDate, 1), 1)
-
-        if (isBefore(expiryDate, now)) {
-          setExpiryErrorType(state => state | ExpiryErrorType.inThePast)
-        }
+        errors.expiryYear = errors.expiryMonth
       }
 
       const cvc = (values.cvc?.trim() || '')
@@ -139,31 +106,6 @@ export default function Home () {
       return errors
     },
   })
-
-  const expiryError = useMemo<string>(() => {
-    let error = ''
-
-    const monthBlank = (ExpiryErrorType.monthBlank | expiryErrorType) === ExpiryErrorType.monthBlank
-    const yearBlank = (ExpiryErrorType.yearBlank | expiryErrorType) === ExpiryErrorType.yearBlank
-
-    const monthJunk = (ExpiryErrorType.monthJunk | expiryErrorType) === ExpiryErrorType.monthJunk
-    const yearJunk = (ExpiryErrorType.yearJunk | expiryErrorType) === ExpiryErrorType.yearJunk
-
-    const monthOutOfRange = (ExpiryErrorType.monthOutOfRange | expiryErrorType) === ExpiryErrorType.monthOutOfRange
-    const yearOutOfRange = (ExpiryErrorType.yearOutOfRange | expiryErrorType) === ExpiryErrorType.yearOutOfRange
-
-    const inThePast = (ExpiryErrorType.inThePast | expiryErrorType) === ExpiryErrorType.inThePast
-
-    if (monthBlank || yearBlank) {
-      error = `Can't be blank`
-    } else if ((yearJunk || monthJunk) || monthOutOfRange || yearOutOfRange) {
-      error = `Invalid month/year `
-    } else if (inThePast) {
-      error = `Expired`
-    }
-
-    return error
-  }, [expiryErrorType])
 
   return (
     <div className={styles.container}>
@@ -224,7 +166,10 @@ export default function Home () {
               placeholder="MM"
               guide={false}
               data-invalid={!!formik.errors.expiryMonth && formik.touched.expiryMonth}
-              onBlur={formik.handleBlur}
+              onBlur={(e) => {
+                formik.setFieldValue('expiryMonth', padStart(e.currentTarget.value, 2, '0'))
+                formik.handleBlur(e)
+              }}
             />
             <MaskedInput
               type="text"
@@ -238,10 +183,10 @@ export default function Home () {
               data-invalid={!!formik.errors.expiryYear && formik.touched.expiryYear}
               onBlur={formik.handleBlur}
             />
-            {(formik.touched.expiryMonth || formik.touched.expiryYear) && (formik.errors.expiryMonth || formik.errors.expiryYear)
+            {(formik.touched.expiryMonth || formik.touched.expiryYear) && formik.errors.expiryMonth
               ? <span
                 className={`error ${styles.expiryError}`}
-              >{expiryError}</span>
+              >{formik.errors.expiryMonth || formik.errors.expiryYear}</span>
               : null}
             <label
               htmlFor="cvc"
