@@ -14,7 +14,6 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.42.1",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.7.0",
     "react-text-mask": "^5.5.0",

@@ -1,0 +1,12 @@
+.cardBack {
+  position: relative;
+
+  .cvc {
+    position: absolute;
+    color: white;
+    font-size: 9px;
+    letter-spacing: 1.29px;
+    top: 4.4rem;
+    right: 2rem;
+  }
+}

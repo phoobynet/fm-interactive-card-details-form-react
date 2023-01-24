@@ -1,0 +1,28 @@
+.content {
+  position: absolute;
+  display: grid;
+  padding: 0.9rem;
+  width: 286px;
+  height: 157px;
+  color: white;
+  top: 0;
+  left: 0;
+
+  .logo {
+    height: 30px;
+  }
+
+  .number {
+    padding-top: 2rem;
+    font-size: 18px;
+    letter-spacing: 2.2px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 1.29px;
+    text-transform: uppercase;
+  }
+}

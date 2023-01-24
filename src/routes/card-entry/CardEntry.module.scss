@@ -1,4 +1,5 @@
 .cardEntry {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -6,6 +7,18 @@
   background-image: url('@/assets/images/bg-main-mobile.png');
   background-repeat: repeat-x;
   padding-top: 20.4rem;
+
+  .cardBack {
+    position: absolute;
+    top: 32px;
+    left: 73px;
+  }
+
+  .cardFront {
+    position: absolute;
+    top: 121px;
+    left: 16px;
+  }
 
   main {
     max-width: 327px;
@@ -52,6 +65,7 @@
 
         .cvcError {
           grid-area: cvcError;
+          min-width: 0;
         }
       }
 
