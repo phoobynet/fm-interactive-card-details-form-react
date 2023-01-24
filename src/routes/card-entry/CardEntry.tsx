@@ -12,6 +12,7 @@ import CardCvcInput from '@/components/card-entry/CardCvcInput'
 import Button from '@/components/card-entry/Button'
 import { useState } from 'react'
 import ThankYou from '@/components/card-entry/ThankYou'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function CardEntry () {
   const [success, setSuccess] = useState<boolean>(false)
@@ -30,9 +31,14 @@ export default function CardEntry () {
         />
       </div>
       <main>
-        {success
-          ? <ThankYou />
-          : <Formik
+        <AnimatePresence>
+          {success && <motion.div
+            key="0"
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
+          ><ThankYou /></motion.div>}
+          {!success && <motion.div key="1"><Formik
             initialValues={{ ...CardFormDataDefault }}
             onSubmit={(values, actions) => {
               console.log('Submit called')
@@ -82,7 +88,8 @@ export default function CardEntry () {
                 <Button type="submit">Confirm</Button>
               </Form>)
           }}
-          </Formik>}
+          </Formik></motion.div>}
+        </AnimatePresence>
       </main>
     </div>
   )

@@ -65,7 +65,5 @@ export const cardFormValidation = (values: CardFormData): FormikErrors<CardFormD
     errors.cvc = 'Invalid CVC'
   }
 
-  console.log(errors)
-
   return errors
 }
