@@ -1,0 +1,35 @@
+.thankYou {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  img {
+    place-self: center;
+    width: 80px;
+    height: 80px;
+  }
+
+  header {
+    padding-top: 28px;
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: var(--fw-primary);
+      font-size: 28px;
+      letter-spacing: 3.42px;
+      color: var(--clr-deep-violet);
+    }
+  }
+
+  p {
+    padding-top: 23px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: var(--fw-primary);
+    color: var(--clr-purplish-gray);
+  }
+
+  .continueButtonContainer {
+    padding-top: 52px;
+  }
+}

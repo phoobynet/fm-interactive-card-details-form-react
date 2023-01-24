@@ -26,7 +26,7 @@ export default function CardFront (props: Props) {
     ? `${props.cardExpiryMonth}/${props.cardExpiryYear}`
     : '00/00', [props.cardExpiryMonth, props.cardExpiryYear])
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={styles.cardFront}>
       <img
         src={cardFront}
         alt=""

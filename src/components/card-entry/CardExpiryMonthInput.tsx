@@ -23,7 +23,13 @@ export default function CardExpiryMonthInput () {
       guide={false}
       aria-invalid={!!errors.expiryMonth && touched.expiryMonth}
       onBlur={(e) => {
-        setFieldValue('expiryMonth', padStart(e.currentTarget.value, 2, '0'))
+        const v = e.currentTarget.value.trim()
+
+        if (v.length === 0) {
+          setFieldValue('expiryMonth', '')
+        } else {
+          setFieldValue('expiryMonth', padStart(e.currentTarget.value, 2, '0'))
+        }
         handleBlur(e)
       }}
     />

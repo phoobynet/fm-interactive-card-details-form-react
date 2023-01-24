@@ -51,7 +51,9 @@ export const cardFormValidation = (values: CardFormData): FormikErrors<CardFormD
       }
     }
 
-    errors.expiryYear = errors.expiryMonth
+    if (errors.expiryMonth) {
+      errors.expiryYear = errors.expiryMonth
+    }
   }
 
   const cvc = (values.cvc?.trim() || '')
@@ -62,6 +64,8 @@ export const cardFormValidation = (values: CardFormData): FormikErrors<CardFormD
   } else if (isNaN(cvcInt) || cvcInt < 100 || cvcInt > 9999) {
     errors.cvc = 'Invalid CVC'
   }
+
+  console.log(errors)
 
   return errors
 }

@@ -1,28 +1,38 @@
-.content {
-  position: absolute;
-  display: grid;
-  padding: 0.9rem;
-  width: 286px;
-  height: 157px;
-  color: white;
-  top: 0;
-  left: 0;
+.cardFront {
+  position: relative;
 
-  .logo {
-    height: 30px;
+  > img {
+    box-shadow: 0px 20px 20px hsla(0, 0%, 50%, .3);
+    border-radius: .4rem;
   }
 
-  .number {
-    padding-top: 2rem;
-    font-size: 18px;
-    letter-spacing: 2.2px;
-  }
+  .content {
+    position: absolute;
+    display: grid;
+    padding: 0.9rem;
+    width: 286px;
+    height: 157px;
+    color: white;
+    top: 0;
+    left: 0;
 
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    font-size: 9px;
-    letter-spacing: 1.29px;
-    text-transform: uppercase;
+
+    .logo {
+      height: 30px;
+    }
+
+    .number {
+      padding-top: 2rem;
+      font-size: 18px;
+      letter-spacing: 2.2px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      letter-spacing: 1.29px;
+      text-transform: uppercase;
+    }
   }
 }
