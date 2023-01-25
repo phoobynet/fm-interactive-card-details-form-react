@@ -3,7 +3,7 @@ import { CardFormData } from '@/lib/types/CardFormData'
 import MaskedInput from 'react-text-mask'
 import { padStart } from 'lodash'
 
-export default function CardExpiryMonthInput () {
+export default function CardFormExpiryMonthInput () {
   const {
     values,
     handleChange,

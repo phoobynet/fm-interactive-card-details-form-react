@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik'
 import { CardFormData } from '@/lib/types/CardFormData'
 
-export default function CardholderNameGroup () {
+export default function CardFormCardholderNameGroup () {
   const {
     values,
     handleChange,

@@ -1,0 +1,56 @@
+.cardForm {
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(3, auto) 6rem;
+  grid-row-gap: .9rem;
+  width: 20.438rem;
+
+  @media (min-width: 1440px){
+    width: 23.813rem;
+    grid-row-gap: 1.3rem;
+  }
+
+  .expiryCvcGroup {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-areas:
+          "expiryLabel expiryLabel cvcLabel cvcLabel"
+          "expiryMonthInput expiryYearInput cvcInput cvcInput"
+          "expiryError expiryError cvcError cvcError";
+
+    .expiryLabel {
+      grid-area: expiryLabel;
+      padding: unset;
+    }
+
+    .expiryMonthInput {
+      grid-area: expiryMonthInput;
+    }
+
+    .expiryYearInput {
+      grid-area: expiryYearInput;
+    }
+
+    .expiryError {
+      grid-area: expiryError;
+    }
+
+    .cvcLabel {
+      grid-area: cvcLabel;
+      padding: unset;
+    }
+
+    .cvcInput {
+      grid-area: cvcInput;
+    }
+
+    .cvcError {
+      grid-area: cvcError;
+      min-width: 0;
+    }
+  }
+
+  .confirmButtonContainer {
+    margin-top: .8rem;
+  }
+}

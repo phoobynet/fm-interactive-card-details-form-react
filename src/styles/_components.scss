@@ -57,4 +57,13 @@ span.error {
 img.card {
   width: 286px;
   height: 157px;
+  box-shadow: 0 20px 20px hsla(0, 0%, 50%, .2);
+  border-radius: .6rem;
+}
+
+@media (min-width: 1440px) {
+  img.card {
+    width: 448px;
+    height: 245px;
+  }
 }

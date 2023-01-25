@@ -23,7 +23,7 @@ export const cardMask = [/\d/,
   /\d/]
 
 
-export default function CardNumberGroup () {
+export default function CardFormCardNumberGroup () {
   const {
     values,
     handleChange,

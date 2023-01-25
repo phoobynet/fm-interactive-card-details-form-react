@@ -2,7 +2,7 @@ import MaskedInput from 'react-text-mask'
 import { useFormikContext } from 'formik'
 import { CardFormData } from '@/lib/types/CardFormData'
 
-export default function CardExpiryYearInput () {
+export default function CardFormExpiryYearInput () {
   const {
     values,
     handleChange,

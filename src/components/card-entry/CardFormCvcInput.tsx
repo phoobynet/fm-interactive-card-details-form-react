@@ -2,7 +2,7 @@ import MaskedInput from 'react-text-mask'
 import { useFormikContext } from 'formik'
 import { CardFormData } from '@/lib/types/CardFormData'
 
-export default function CardCvcInput () {
+export default function CardFormCvcInput () {
   const {
     values,
     handleChange,
