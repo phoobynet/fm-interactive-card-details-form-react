@@ -11,22 +11,22 @@
   background-image: url('@/assets/images/bg-main-mobile.png');
   background-repeat: no-repeat;
   padding-top: 20.4rem;
-  width: 375px;
+  width: 23.438rem;
 
   .cardBack {
     position: absolute;
-    top: 32px;
-    left: 73px;
+    top: 2rem;
+    left: 4.563rem;
   }
 
   .cardFront {
     position: absolute;
-    top: 126px;
-    left: 16px;
+    top: 7.875rem;
+    left: 1rem;
   }
 
   main {
-    width: 327px;
+    width: 20.438rem;
   }
 }
 
@@ -37,7 +37,7 @@
     height: 100vh;
     background-image: url('@/assets/images/bg-main-desktop.png');
     background-repeat: no-repeat;
-    background-size: 483px 900px;
+    background-size: 30.188rem 56.25rem;
   }
 
   .cardEntry {

@@ -5,27 +5,27 @@
     position: absolute;
     display: grid;
     padding: 0 1.2rem;
-    width: 286px;
-    height: 157px;
+    width: 17.875rem;
+    height: 9.813rem;
     color: white;
     top: 0;
     left: 0;
     grid-template-rows: 5.1rem repeat(2, auto);
 
     .logo {
-      height: 30px;
+      height: 1.875rem;
       margin-top: 1.2rem;
     }
 
     .number {
-      font-size: 18px;
+      font-size: var(--fs-lg);
       letter-spacing: 2.2px;
     }
 
     .footer {
       display: flex;
       justify-content: space-between;
-      font-size: 9px;
+      font-size: var(--fs-xs);
       letter-spacing: 1.29px;
       text-transform: uppercase;
     }
@@ -34,23 +34,23 @@
   @media (min-width: 1440px) {
     .content {
       padding: 0 2rem;
-      width: 447px;
-      height: 254px;
+      width: 27.938rem;
+      height: 15.875rem;
       grid-template-rows: 8.5rem 4rem auto;
 
       .logo {
-        height: 47px;
+        height: 2.938rem;
         margin-top: 1.8rem;
       }
 
       .number {
         padding: unset;
-        font-size: 28px;
+        font-size: var(--fs-xl);
         letter-spacing: 3.42px;
       }
 
       .footer {
-        font-size: 14px;
+        font-size: var(--fs-normal);
         letter-spacing: 2px;
       }
     }

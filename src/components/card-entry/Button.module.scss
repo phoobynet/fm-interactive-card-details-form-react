@@ -1,10 +1,10 @@
 .button {
   background-color: var(--clr-deep-violet);
-  height: 53px;
+  height: 3.13rem;
   border-radius: 0.5rem;
   color: white;
   text-align: center;
-  font-size: 18px;
+  font-size: var(--fs-lg);
   cursor: pointer;
   min-width: 100%;
 }

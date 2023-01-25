@@ -2,16 +2,16 @@ label {
   display: inline-block;
   padding-bottom: .5rem;
   color: var(--clr-deep-violet);
-  font-size: 12px;
+  font-size: var(--fs-sm);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 input {
-  height: 45px;
+  height: 2.813rem;
   border-radius: 0.5rem;
-  border: var(--clr-light-gray) 1px solid;
-  font-size: 18px;
+  border: var(--clr-light-gray) 0.0625rem solid;
+  font-size: var(--fs-lg);
   padding: 0 1rem;
   width: 100%;
   outline: none;
@@ -38,32 +38,32 @@ input {
 
   &:hover:not([data-invalid='true']), &:focus:not([data-invalid='true']) {
     background: linear-gradient(white, white) padding-box, var(--input-gradient) border-box;
-    border-width: 1px;
+    border-width: 0.0625rem;
     border-style: solid;
     border-color: transparent;
     border-radius: 0.5rem;
   }
 
   &[aria-invalid='true'] {
-    border: var(--clr-error) 1px solid !important;
+    border: var(--clr-error) 0.0625rem solid !important;
   }
 }
 
 span.error {
   color: var(--clr-error);
-  font-size: 12px;
+  font-size: var(--fs-sm);
 }
 
 img.card {
-  width: 286px;
-  height: 157px;
-  box-shadow: 0 20px 20px hsla(0, 0%, 50%, .2);
+  width: 17.875rem;
+  height: 9.813rem;
+  box-shadow: 0 1.25rem 1.25rem hsla(0, 0%, 50%, .2);
   border-radius: .6rem;
 }
 
 @media (min-width: 1440px) {
   img.card {
-    width: 448px;
-    height: 245px;
+    width: 28rem;
+    height: 15.313rem;
   }
 }
