@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react'
 import ThankYou from '@/components/card-entry/ThankYou'
 import { AnimatePresence, motion } from 'framer-motion'
 import CardForm from '@/components/card-entry/CardForm'
+import cardBack from '@/assets/images/bg-card-back.png'
 
 export default function CardEntry () {
   const [cardFormData, setCardFormData] = useState<CardFormData>({ ...CardFormDataDefault })
@@ -17,10 +18,10 @@ export default function CardEntry () {
   return (
     <div className={styles.container}>
       <div className={styles.cardEntry}>
-        <div className={styles.cardBack}>
+        <div className={styles.cardBackContainer}>
           <CardBack cvc={cardFormData.cvc} />
         </div>
-        <div className={styles.cardFront}>
+        <div className={styles.cardFrontContainer}>
           <CardFront
             cardNumber={cardFormData.cardNumber}
             cardExpiryMonth={cardFormData.expiryMonth}

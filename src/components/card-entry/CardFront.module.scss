@@ -1,6 +1,4 @@
 .cardFront {
-  position: relative;
-
   .content {
     position: absolute;
     display: grid;
@@ -29,10 +27,8 @@
       letter-spacing: 1.29px;
       text-transform: uppercase;
     }
-  }
 
-  @media (min-width: 1440px) {
-    .content {
+    @media (min-width: 1440px) {
       padding: 0 2rem;
       width: 27.938rem;
       height: 15.875rem;
